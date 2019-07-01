@@ -1,0 +1,6 @@
+- 中间件
+- reselect，减少redux state改变时候无关属性计算
+- redux-saga，异步actions管理
+- react-router-redux
+- devTools状态跟踪
+- redux热重载
