@@ -1,10 +1,3 @@
----
-layout: post
-title:   leetcode-4 Median of Two Sorted Arrays
-date:   2017-05-18 00:00:00 +0800
-categories: CS
-tag: leetcode
----
 ## 说明：
 
 先将两个数组归并，然后找出中间值

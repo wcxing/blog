@@ -1,10 +1,3 @@
----
-layout: post
-title:   nodejs学习笔记-2-mysql
-date:   2017-07-14 00:00:00 +0800
-categories: CS
-tag: node
----
 ## 推荐文章
 
 quote-1：《安装mysql》 如何安装mysql

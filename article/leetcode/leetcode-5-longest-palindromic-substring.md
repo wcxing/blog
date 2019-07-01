@@ -1,10 +1,3 @@
----
-layout: post
-title:   leetcode-5 longest palindromic substring
-date:   2017-06-20 00:00:00 +0800
-categories: CS
-tag: leetcode
----
 ## 说明
 
 最长回文串，考虑到长度为奇数的回文串和长度为偶数的回文串。

@@ -1,10 +1,3 @@
----
-layout: post
-title:   leetcode-7 Reverse Integer
-date:   2017-06-20 00:00:00 +0800
-categories: CS
-tag: leetcode
----
 ## 说明：
 
 32位有符号整数的范围就是-2^31 ~ 2^31。

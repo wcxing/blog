@@ -1,10 +1,3 @@
----
-layout: post
-title:    leetcode-11 Container With Most Water
-date:   2017-09-10 00:00:00 +0800
-categories: CS
-tag: leetcode
----
 ## 说明：
 
     题目是：给定n个非负整数 a1, a2..., ai..., an，表示在点(i, ai)处的点。现在根据这个整数序列画出n条线段，每个线段的两个端点分别为(i, 0)和(i, ai)。要求是从这n条线段中找出两条，使得这两条直线与x轴围成的容器所能容纳的水最多。

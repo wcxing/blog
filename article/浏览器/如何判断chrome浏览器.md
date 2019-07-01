@@ -1,10 +1,3 @@
----
-layout: post
-title:    如何判断chrome浏览器
-date:   2017-08-12 00:00:00 +0800
-categories: CS
-tag: css
----
 
 ## 背景
 

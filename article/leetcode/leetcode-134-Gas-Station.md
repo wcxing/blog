@@ -1,10 +1,3 @@
----
-layout: post
-title:          leetcode-134 Gas Station
-date:   2017-12-12 00:00:00 +0800
-categories: CS
-tag: leetcode
----
 ## 代码
 ```
 /** 

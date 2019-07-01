@@ -1,10 +1,3 @@
----
-layout: post
-title:         leetcode-21 Merge Two Sorted Lists
-date:   2017-11-20 00:00:00 +0800
-categories: CS
-tag: leetcode
----
 ## 说明
 
     合并两个列表，这里list使用的是链表结构

@@ -1,10 +1,3 @@
----
-layout: post
-title:   leetcode-9 Palindrome Number
-date:   2017-06-26 00:00:00 +0800
-categories: CS
-tag: leetcode
----
 ## 说明
 
 判断一个数字是否具有回文特性，不允许使用额外存储空间

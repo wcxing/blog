@@ -1,10 +1,3 @@
----
-layout: post
-title:  leetcode-3 Longest Substring Without Repeating Characters
-date:   2017-05-18 00:00:00 +0800
-categories: CS
-tag: leetcode
----
 ## 说明
 
 最基本的思路是，遍历字符串，计算以每个字符开头的无重复子串长度，但是这样做的复杂度会很大，无法通过最后一个用例（这个题目的最后一个用例是用来测试算法的时间复杂度的）。

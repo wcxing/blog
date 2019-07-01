@@ -1,10 +1,3 @@
----
-layout: post
-title:    leetcode-13 Roman to Integer
-date:   2017-09-11 00:00:00 +0800
-categories: CS
-tag: leetcode
----
 ## 说明：
 
 首先要弄清zigzag模式的概念，在博客http://blog.csdn.net/zhouworld16/article/details/14121477中，有很清晰的介绍。

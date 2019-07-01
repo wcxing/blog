@@ -1,10 +1,3 @@
----
-layout: post
-title:   nodejs学习笔记-1-express
-date:   2017-07-13 00:00:00 +0800
-categories: CS
-tag: node
----
 ## 推荐文章：
 
 quote-1：[《nodejs教程》](http://www.runoob.com/nodejs/nodejs-tutorial.html) 这是一个非常简单易懂的教程，通过这个教程读者一定可以入门nodejs

@@ -1,10 +1,3 @@
----
-layout: post
-title: 记几个有用的css样式
-date:   2018-04-03 00:00:00 +0800
-categories: CS
-tag: css
----
 ## -webkit-font-smoothing: antialiased;
 
 该属性用于设置字体的抗锯齿或者说光滑度，可以让移动端的字体更纤细好看

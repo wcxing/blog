@@ -1,10 +1,4 @@
----
-layout: post
-title:    二分查找-javascript
-date:   2017-07-13 00:00:00 +0800
-categories: CS
-tag: algorithm
----
+
 ## 二分查找
 
    二分查找针对有序序列，升序或降序。相比线性查找，二分查找使用分治思想，利用了序列有序的信息，减少了搜索的复杂度。

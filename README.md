@@ -51,7 +51,7 @@
 
 - [leetcode-22-Generate-Parentheses](./article/leetcode/leetcode-22-Generate-Parentheses.md)
 
-- [leetcode-3-Longest-Substring Without-Repeating-Characters](./article/leetcode/leetcode-3-Longest-Substring Without-Repeating-Characters.md)
+- [leetcode-3-Longest-Substring-Without-Repeating-Characters](./article/leetcode/leetcode-3-Longest-Substring-Without-Repeating-Characters.md)
 
 - [leetcode-4-Median-of-Two-Sorted-Arrays](./article/leetcode/leetcode-4-Median-of-Two-Sorted-Arrays.md)
 

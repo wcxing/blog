@@ -1,10 +1,3 @@
----
-layout: post
-title:          leetcode-22 Generate Parentheses
-date:   2017-12-23 00:00:00 +0800
-categories: CS
-tag: leetcode
----
 ## 说明：
 
     题目要求找出n个括号所能组成的所有合法括号序列，所谓合法括号序列，指的是从左到右遍历序列，任意位置都满足，左括号的个数大于等于右括号的个数。

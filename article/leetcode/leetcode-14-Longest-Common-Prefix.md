@@ -1,10 +1,3 @@
----
-layout: post
-title:     leetcode-14 Longest Common Prefix
-date:   2017-09-12 00:00:00 +0800
-categories: CS
-tag: leetcode
----
 ## 说明：
 
     题目要求找出一个字符串数组中的所有字符串的最长前缀。

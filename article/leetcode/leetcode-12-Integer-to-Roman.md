@@ -1,10 +1,3 @@
----
-layout: post
-title:    leetcode-12 Integer to Roman
-date:   2017-09-11 00:00:00 +0800
-categories: CS
-tag: leetcode
----
 ## 说明：
 
     该题目要求是将一个整数转换为一个罗马数字，所以首先要搞清楚罗马数字的规则。

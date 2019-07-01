@@ -1,10 +1,3 @@
----
-layout: post
-title:       leetcode-17 Letter Combinations of a Phone Number
-date:   2017-11-20 00:00:00 +0800
-categories: CS
-tag: leetcode
----
 ## 说明
 
     当我们使用手机的9键键盘时，每个按键对应多个字母，我们按下几个键后，对应多种可能的字母组合。题目要求根据输入的数字求出所有可能的字母组合。这个题就是简单的递归题目，和字符全排列类似。

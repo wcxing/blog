@@ -1,10 +1,3 @@
----
-layout: post
-title: canvas截取video元素图片
-date:   2018-08-20 00:00:00 +0800
-categories: CS
-tag: js
----
 ## 背景
 
 使用canvas的drawImage api可以截取video等元素的图片并生成base64的图片url，利用这个api，我们可以实现video的动态截图功能

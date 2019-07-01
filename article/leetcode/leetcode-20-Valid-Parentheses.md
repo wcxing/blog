@@ -1,10 +1,3 @@
----
-layout: post
-title:        leetcode-20 Valid Parentheses
-date:   2017-11-20 00:00:00 +0800
-categories: CS
-tag: leetcode
----
 ## 说明
 
     题目要求判断一个括号序列是否合法。

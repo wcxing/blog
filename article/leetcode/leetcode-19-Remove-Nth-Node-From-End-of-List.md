@@ -1,10 +1,3 @@
----
-layout: post
-title:       leetcode-19 Remove Nth Node From End of List
-date:   2017-11-20 00:00:00 +0800
-categories: CS
-tag: leetcode
----
 ## 说明
 
     题目要求删除链表倒数第n个节点。

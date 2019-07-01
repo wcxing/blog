@@ -1,10 +1,3 @@
----
-layout: post
-title:       leetcode-16 3Sum Closest
-date:   2017-11-18 00:00:00 +0800
-categories: CS
-tag: leetcode
----
 ## 说明
 
     题目是，给定一个数组，和一个目标值，找出数组中的3个数，这3个数之和离目标值最近。

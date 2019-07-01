@@ -1,10 +1,3 @@
----
-layout: post
-title:      leetcode-15 3sum
-date:   2017-11-18 00:00:00 +0800
-categories: CS
-tag: leetcode
----
 ## 说明
 
     题目是，给定一个数组（nums），返回一个数组（假定为result），result的每个元素都是一个数组（假定为ele），ele长度为3，其中的3个元素不重复地取自nums，并且这3个元素之和为0。result中的各数组要保证3元素组合不重复。

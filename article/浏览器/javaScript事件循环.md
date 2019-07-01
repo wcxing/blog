@@ -1,10 +1,4 @@
----
-layout: post
-title: javaScript事件循环
-date:   2018-03-19 00:00:00 +0800
-categories: CS
-tag: js
----
+
 ## 引文
 [引文1](https://www.cnblogs.com/dong-xu/p/7000139.html)
 
