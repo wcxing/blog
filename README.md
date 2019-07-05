@@ -109,6 +109,8 @@
 
 - [redux周边技术](./article/状态管理/redux周边技术.md)
 
+- [前端代码组织](./article/状态管理/前端代码组织.md)
+
 - [状态管理](./article/状态管理/状态管理.md)
 
 - [二分查找-javascript](./article/算法/二分查找-javascript.md)
