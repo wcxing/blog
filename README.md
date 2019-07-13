@@ -67,6 +67,8 @@
 
 - [ssr](./article/next/ssr.md)
 
+- [ssr2](./article/next/ssr2.md)
+
 - [nginx](./article/ngnix/nginx.md)
 
 - [nodejs学习笔记-1-express](./article/nodejs/nodejs学习笔记-1-express.md)
