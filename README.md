@@ -73,6 +73,8 @@
 
 - [nginx](./article/ngnix/nginx.md)
 
+- [nodejs多进程](./article/nodejs/nodejs多进程.md)
+
 - [nodejs学习笔记-1-express](./article/nodejs/nodejs学习笔记-1-express.md)
 
 - [nodejs学习笔记-2-mysql](./article/nodejs/nodejs学习笔记-2-mysql.md)
