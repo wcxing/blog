@@ -8,7 +8,8 @@ Node提供了3个主要的用于网络编程的模块：net、dgram和http。其
 
 对于网络请求的发送，我们关注的API是
 
-- 如何发送
+- 如何发送请求
+- 如何接受响应
 
 而对于server的实现，我们关注的API是
 
@@ -31,7 +32,7 @@ var HOST = '127.0.0.1';
 
 // tcp服务端
 var server = net.createServer(function(socket) {
-    console.log('服务端：收到来自客户端的请求');
+    console.log('客户端已连接');
 
     socket.on('data', function(data) {
         console.log('服务端：收到客户端数据，内容为{'+ data +'}');
@@ -47,20 +48,25 @@ server.listen(PORT, HOST, function() {
 
 // client.js
 
-var net = require('net');
-
-var PORT = 3000;
-var HOST = '127.0.0.1';
-
-var client = net.createConnection(PORT, HOST);
-
-client.end('你好，我是客户端');
+const net = require('net');
+const client = net.createConnection({ port: 8124 }, () => {
+  //'connect' listener
+  console.log('connected to server!');
+  client.write('world!\r\n');
+});
+client.on('data', (data) => {
+  console.log(data.toString());
+  client.end();
+});
+client.on('end', () => {
+  console.log('disconnected from server');
+});
 
 ```
 
 我们可以看到使用net模块需要调用其方法创建client或者server
 
-client.end用来发送请求
+client.write()用来发送请求；client.on('data')用来接收响应
 
 server.listen用来监听端口；创建server的回调中的socket实例可以用来接受请求数据（```socket.on('data')```）；socket.write()用来返回响应
 
@@ -135,10 +141,47 @@ var client = http.get('http://127.0.0.1:3000', function(clientRes){
 
 ```
 
-http.get()方法直接发送请求，http.createServer()用来创建一个server
+http.get()方法直接发送请求，http.createServer()用来创建一个server（回调中的req和res都是Stream类型的实例，使用Stream相关的接口可以处理数据）
 
-http.get()方法用来发送请求；server.listen()用来监听端口；createServer创建server的回调中的req参数用来接受请求（```req.url```）；res.end()方法用来返回响应
+http.get()方法用来发送请求；回调参数clientRes用来接收响应
 
-#### 4. 路由
+server.listen()用来监听端口；createServer创建server的回调中的req参数用来接受请求（```req.url```）；res.end()方法用来返回响应
 
 我们web server最常用的是http模块。目前主流的Node web server 框架express和koa就是对http模块的封装。这些框架的封装主要屏蔽了请求解析的细节，比如通常我们使用的路由功能，都是框架对请求的url进行解析，然后找到使用框架的开发者注册的路由对应的响应方法调用，就实现了相应的功能
+
+#### 4. https
+
+https用法与http很像
+
+https客户端：
+
+```
+var https = require('https');
+
+https.get('https://www.baidu.com', function(res){
+
+    res.on('data', function(data){
+        process.stdout.write(data);
+    });
+});
+
+```
+
+可以看到，https客户端用法与http类似。需要考虑的问题是，如果访问的网站安全证书不受信任，https模块会报错。有两中方法可以访问证书不受信任的网站
+
+代码执行方式是：
+
+```https.get(options, callback)```
+
+options中包括访问的url和其他配置信息信息
+
+1. options中配置忽略安全警告
+2. options中配置证书（需要提前下载）
+
+https server端：
+
+创建https server需要证书，执行如下：
+
+```https.createServer(options, callback) ```
+
+options中配置了私钥和证书文件路径。证书和私钥可以通过购买或者使用```openssl```工具生成。
