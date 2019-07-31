@@ -73,13 +73,13 @@
 
 - [nginx](./article/ngnix/nginx.md)
 
-- [nodejs stream](./article/nodejs/nodejs stream.md)
+- [Node stream](./article/nodejs/Node stream.md)
 
-- [nodejs多进程](./article/nodejs/nodejs多进程.md)
+- [Node 多进程](./article/nodejs/Node 多进程.md)
 
-- [nodejs学习笔记-1-express](./article/nodejs/nodejs学习笔记-1-express.md)
+- [Node 网络编程](./article/nodejs/Node 网络编程.md)
 
-- [nodejs学习笔记-2-mysql](./article/nodejs/nodejs学习笔记-2-mysql.md)
+- [mysql](./article/nodejs/mysql.md)
 
 - [口琴bd谱-斯卡布罗集市](./article/other/口琴bd谱-斯卡布罗集市.md)
 
