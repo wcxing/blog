@@ -4,8 +4,7 @@
   "description": "blog",
   "main": "update.js",
   "scripts": {
-    "update": "node ./update.js",
-    "publish": "npm run update & git push"
+    "update": "node ./update.js"
   },
   "keywords": [],
   "author": "doomliu",

@@ -1,3 +1,7 @@
+/**
+ * @file 自动生成目录
+ * @author doomliu
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -19,8 +23,7 @@ async function update() {
     const files = [ ];
     const tree = await buildDirTree(ARTICLE_NAME);
     traversalDirTree(tree, files);
-    const count = files.filter(file => file.type === 'file').length;
-    fs.writeFileSync('./README.md', `${getTitle(count)}${getContent(files)}`, );
+    fs.writeFileSync('./README.md', `${getTitle(files)}${getContent(files)}`, );
 }
 
 // 构建目录树
@@ -51,7 +54,7 @@ async function buildDirTree(dir) {
     };
 }
 
-// 遍历目录树，收集子节点
+// 遍历目录树，将目录及文章按序放进list
 function traversalDirTree(root, list) {
     const children = root.children;
     if (root.dir !== ARTICLE_NAME
@@ -70,6 +73,7 @@ function traversalDirTree(root, list) {
     }
 }
 
+// 目录放在前面，文件放后面
 function sortByType(list) {
     const dirList = [];
     const fileList = [];
@@ -84,7 +88,8 @@ function sortByType(list) {
     return [...dirList, ...fileList];
 }
 
-function getTitle(count) {
+function getTitle(files) {
+    const count = files.filter(file => file.type === 'file').length;
     return `## 博客\n目录（${count}）\n\n`;
 }
 
