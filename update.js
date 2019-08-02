@@ -6,11 +6,22 @@ const asyncFs = {
     stat: asyncify(fs.stat)
 };
 
+const ARTICLE_NAME = './article';
+
 update()
     .then(
         data => data,
         e => console.error(e)
     );
+
+// 更新README.md中的目录
+async function update() {
+    const files = [ ];
+    const tree = await buildDirTree(ARTICLE_NAME);
+    traversalDirTree(tree, files);
+    const count = files.filter(file => file.type === 'file').length;
+    fs.writeFileSync('./README.md', `${getTitle(count)}${getContent(files)}`, );
+}
 
 // 构建目录树
 async function buildDirTree(dir) {
@@ -19,19 +30,23 @@ async function buildDirTree(dir) {
     if (stat.isFile()) {
         return {
             name: path.basename(dir, '.md'),
+            type: 'file',
             dir: dir,
             children: null
         };
     }
     // 如果是目录，遍历其中文件
     const list = await asyncFs.readdir(dir);
-    const children = [ ];
+    let children = [ ];
     for (let index in list) {
         const node = await buildDirTree(path.join(dir, list[index]));
         children.push(node);
     }
+    children = sortByType(children);
     return {
+        name: path.basename(dir),
         dir: dir,
+        type: 'dir',
         children: children
     };
 }
@@ -39,8 +54,15 @@ async function buildDirTree(dir) {
 // 遍历目录树，收集子节点
 function traversalDirTree(root, list) {
     const children = root.children;
+    if (root.dir !== ARTICLE_NAME
+        && (!(root.type === 'file') || path.extname(root.dir) === '.md')
+    ) {
+        list.push({
+            ...root,
+            deepLength: root.dir.split('/').length
+        });
+    }
     if (!children) {
-        list.push(root);
         return;
     }
     for (let index in children) {
@@ -48,41 +70,34 @@ function traversalDirTree(root, list) {
     }
 }
 
-// 收集markdown文件
-function collectMarkdownFiles(list) {
-    return list
-        .filter(file => {
-            return path.extname(file.dir) === '.md' && file.name !== 'README';
-        })
-        .map(file => {
-            return {
-                name: file.name,
-                dir: `./${file.dir}`
-            }
-        });
+function sortByType(list) {
+    const dirList = [];
+    const fileList = [];
+    list.forEach(item => {
+        if (item.type === 'file') {
+            fileList.push(item);
+        }
+        else {
+            dirList.push(item);
+        }
+    });
+    return [...dirList, ...fileList];
 }
 
-// 更新README.md中的目录
-async function update() {
-    const leaves = [ ];
-    const tree = await buildDirTree('./');
-    traversalDirTree(tree, leaves);
-    const articles = collectMarkdownFiles(leaves);
-    fs.writeFileSync('./README.md', `${getTitle()}${getContent(articles)}`, );
-}
-
-function getTitle() {
-    return `## 博客\n目录\n\n`;
+function getTitle(count) {
+    return `## 博客\n目录（${count}）\n\n`;
 }
 
 function getContent(articles) {
     return articles
         .map(article => getContentItem(article))
-        .join(`\n\n`)
+        .join(`\n`)
         .toString()
 
     function getContentItem(article) {
-        return `- [${article.name}](${article.dir})`;
+        const tabCount = article.deepLength - 2;
+        const prefix = new Array(Number(tabCount)).fill('\t').join('');
+        return `${prefix}- [${article.name}](${article.dir})`;
     }
 }
 
@@ -100,13 +115,4 @@ function asyncify(fn) {
             })
         });
     }
-}
-
-function test() {
-    const leaves = [ ];
-    buildDirTree('./')
-    .then(tree => {
-        traversalDirTree(tree, leaves);
-        console.log(collectMarkdownFiles(leaves));
-    });
 }
