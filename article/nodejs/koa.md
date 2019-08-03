@@ -100,7 +100,6 @@ koa2-static、koa-send
 我们使用koa-router这个中间件实现路由功能，即根据请求路径确定实际操作
 
 ```
-
 const Koa = require('koa');
 const Router = require('koa-router');
 
@@ -120,6 +119,8 @@ app.listen(3000, err => {
 })
 
 ```
+
+我们也可以自定义中间件实现路由解析功能，只不过使用koa-router，可以让我们的程序看起来更清晰。
 
 2. 解析get请求参数和post请求参数
 
@@ -156,11 +157,15 @@ app.listen(3000);
 router.get('/product/:classId', async ctx => {
 	// { classId: '123' } //获取动态路由的数据
 	console.log(ctx.params);
-	ctx.body='课程信息';
+	ctx.body = '课程信息';
 });
 ```
 
-4. 错误处理
+4. 返回响应
+
+koa中返回响应是通过```ctx.body = '返回结果';```来实现的，其中ctx.body是ctx.response.body的别名。这个赋值语句只是将返回的响应挂到ctx.上，koa执行完所有中间件后，会将响应返回给客户端
+
+5. 错误处理
 
 错误处理可以通过错误处理中间件实现
 
@@ -168,32 +173,54 @@ router.get('/product/:classId', async ctx => {
 app.use(async (ctx, next) => {
     await next();
     if(ctx.status === 404) {
-        ctx.body="404页面"
+        ctx.body = "404页面"
     }
 });
 ```
 
 错误处理可能会在其他中间件中进行，比如某个路由中间件处理发现请求not found，将ctx.status置为404，然后在上面的错误处理中间件中即可处理。
 
-5. 模板引擎
+6. 重定向
+
+koa通过ctx.redirect()方法进行重定向，示例如下
+
+```
+const Koa = require('koa');
+const route = require('koa-route');
+const app = new Koa();
+
+const redirect = ctx => {
+ctx.response.redirect('/');
+};
+
+const main = ctx => {
+ctx.response.body = 'Hello World';
+};
+
+app.use(route.get('/', main));
+app.use(route.get('/redirect', redirect));
+app.listen(3000);
+```
+
+7. 模板引擎
 
 为了提供服务端渲染功能，web server都有响应的模板引擎（如php的smarty）
 
 js模板引擎有ejs、art-template等，其中art-template使用更多一点
 
-6. cookie和session
+8. cookie和session
 
 cookie可以直接使用ctx.cookies.set和ctx.cookies.get设置和获取
 
 session可以使用koa-session中间件进行处理
 
-7. 公用数据
+9. 公用数据
 
 如果每次请求的多个中间件需要共享一些数据，可以将之挂到ctx.state上
 
 ```ctx.state.userinfo = {name: ''};```
 
-8. 数据库、cache编程接口
+10. 数据库、cache编程接口
 
 如果web server需要连接数据库，需要下载Node驱动
 
@@ -201,11 +228,11 @@ session可以使用koa-session中间件进行处理
 
 使用mysql ```npm install mysql --save```
 
-9. 日志
+11. 日志
 
 使用koa，也有第三方中间件提供日志能力，如koa-log4，当然我们也可以自定义中间件实现日志功能
 
-10. 跨域
+12. 跨域
 
 使用koa2-cors中间件可以实现跨域配置
 
