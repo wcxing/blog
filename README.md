@@ -1,5 +1,5 @@
 ## 博客
-目录（68）
+目录（69）
 
 - [SSR](article/SSR)
 	- [next](article/SSR/next.md)
@@ -51,6 +51,7 @@
 	- [Node-网络编程](article/nodejs/Node-网络编程.md)
 	- [koa](article/nodejs/koa.md)
 	- [mysql](article/nodejs/mysql.md)
+	- [pm2](article/nodejs/pm2.md)
 - [other](article/other)
 	- [口琴bd谱-斯卡布罗集市](article/other/口琴bd谱-斯卡布罗集市.md)
 	- [口琴bd谱-送别](article/other/口琴bd谱-送别.md)

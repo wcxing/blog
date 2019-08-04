@@ -89,7 +89,7 @@ node不允许在多个进程间共享数据，因此需要一种方案来实现�
 
 ## 4. cluster
 
-cluster模块时child_process和net模块的组合应用。
+cluster模块是child_process和net模块的组合应用。cluster模式有个限制，是每个子进程只能是node进程，使用child_process则可以更灵活地开启子进程，可以是其他类型的程序。
 
 #### 两种创建集群的方式
 
