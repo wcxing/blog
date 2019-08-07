@@ -1,5 +1,5 @@
 ## 博客
-目录（69）
+目录（70）
 
 - [SSR](article/SSR)
 	- [next](article/SSR/next.md)
@@ -55,6 +55,8 @@
 - [other](article/other)
 	- [口琴bd谱-斯卡布罗集市](article/other/口琴bd谱-斯卡布罗集市.md)
 	- [口琴bd谱-送别](article/other/口琴bd谱-送别.md)
+- [typescript](article/typescript)
+	- [TypeScript配置react](article/typescript/TypeScript配置react.md)
 - [webpack](article/webpack)
 	- [webpack-dev-server](article/webpack/webpack-dev-server.md)
 	- [webpack代码分割-使用require.ensure](article/webpack/webpack代码分割-使用require.ensure.md)
