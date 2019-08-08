@@ -31,18 +31,22 @@
 
 #### 依赖库
 
-- webpack
-- webpack-cli
-- webpack-dev-server
-- html-webpack-plugin
+- 构建相关
+    - webpack
+    - webpack-cli
+    - webpack-dev-server
+    - html-webpack-plugin
 
-- typescript(全局)
-- typescript（本地）
+- typescript相关
+    - typescript(全局)
+    - typescript（本地）
+    - ts-loader
 
-- react
-- react-dom
-- @types/react
-- @types/react-dom
+- react相关
+    - react
+    - react-dom
+    - @types/react
+    - @types/react-dom
 
 
 #### 搭建步骤
