@@ -116,3 +116,4 @@ module.exports = {
 
 - 如果文件中声明了React组件，必须开启jsx支持（文件.tsx后缀 + tsconfig.json中配置jsx选项为’react‘）。
 - webpack.config.js中的resolve.extensions列表中不仅要包含'.tsx'、'.ts'，还要包含'.js'。否则有些index.js引用不到，本地调试时候就会报错
+- 如果webpack中配置了路径别名（resolve.alias），则需要在tsconfig.json中也配置一下，否则tsc会报错找不到模块
