@@ -25,18 +25,22 @@
 
 #### 依赖库
 
-- webpack
-- webpack-cli
-- webpack-dev-server
-- html-webpack-plugin
+- 构建相关
+    - webpack
+    - webpack-cli
+    - webpack-dev-server
+    - html-webpack-plugin
 
-- typescript(全局)
-- typescript（本地）
+- typescript相关
+    - typescript(全局)
+    - typescript（本地）
+    - ts-loader
 
-- react
-- react-dom
-- @types/react
-- @types/react-dom
+- react相关
+    - react
+    - react-dom
+    - @types/react
+    - @types/react-dom
 
 #### 搭建步骤
 
@@ -105,6 +109,7 @@ module.exports = {
 
 - 如果文件中声明了React组件，必须开启jsx支持（文件.tsx后缀 + tsconfig.json中配置jsx选项为’react‘）。
 - webpack.config.js中的resolve.extensions列表中不仅要包含'.tsx'、'.ts'，还要包含'.js'。否则有些index.js引用不到，本地调试时候就会报错
+- 如果webpack中配置了路径别名（resolve.alias），则需要在tsconfig.json中也配置一下，否则tsc会报错找不到模块
 
 ## 2. 支持eslint代码检查
 
