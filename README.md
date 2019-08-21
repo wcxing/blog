@@ -1,5 +1,5 @@
 ## 博客
-目录（70）
+目录（71）
 
 - [SSR](article/SSR)
 	- [next](article/SSR/next.md)
@@ -44,6 +44,8 @@
 - [ngnix](article/ngnix)
 	- [nginx](article/ngnix/nginx.md)
 - [nodejs](article/nodejs)
+	- [eggjs](article/nodejs/eggjs)
+		- [eggjs简述](article/nodejs/eggjs/eggjs简述.md)
 	- [Node-stream](article/nodejs/Node-stream.md)
 	- [Node-多进程](article/nodejs/Node-多进程.md)
 	- [Node-文件操作](article/nodejs/Node-文件操作.md)
