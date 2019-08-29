@@ -177,7 +177,7 @@ class B implements A {
 
 #### 声明文件
 
-typescript要求每个变量都有类型。如果项目中都是我们自己实现的模块，我们会在开发时候声明相应的类型，这完全没有任何问题，可以保证每个变量都有类型。可是由于前端项目中会引用第三方模块，包括script标签中引用的和npm引入的，这些模块可能不都是用typescript开发的。那么如何在这种情况下保证每个变量都有类型呢？
+typescript要求每个变量都有类型。如果项目中都是我们自己实现的模块，我们会在开发时候声明相应的类型，这完全没有任何问题，可以保证每个变量都有类型。可是由于前端项目中会引用第三方模块，包括script标签中引用的和npm引入的，这些模块可能不都是用typescript开发的。那么在这种情况下如何保证每个变量都有类型呢？
 
 首先我们来看下关于变量类型，我们有哪些场景存在问题，然后针对这些场景来看下typescript提供的解决方案。
 
@@ -206,66 +206,79 @@ typescript要求每个变量都有类型。如果项目中都是我们自己实�
 	declare function cefQuery(options: Object): any;
 	```
 
-2. script标签引入的第三方库使用全局变量的类型（如Jquery的$）
+2. 第三方库
 
-	这种情况我们自己可以声明一个.d.ts文件，直接声明一个全局变量即可
-	
-	```
-	// /types/jQuery.d.ts
-	declare function jQuery(selector: string): any;
-	```
-	也可以引入第三方的声明文件```npm install @types/jQuery```
+第三方库的使用场景包括
 
-3. npm包引入的模块（如axios、react）的类型和扩展（如引入插件后增加的成员）类型
+- 全局变量：通过 ```<script>``` 标签引入第三方库，注入全局变量
+- npm 包：通过 import foo from 'foo' 导入，符合 ES6 模块规范
+- UMD 库：既可以通过 ```<script>``` 标签引入，又可以通过 import 导入
+- 直接扩展全局变量：通过 ```<script>``` 标签引入后，改变一个全局变量的结构
+- 在 npm 包或 UMD 库中扩展全局变量：引用 npm 包或 UMD 库后，改变一个全局变量的结构
+- 模块插件：通过 ```<script>``` 或 import 导入后，改变另一个模块的结构
 
-	如果模块自带声明文件，那我们就不需要做任何处理（axios就自带typescript声明文件），如果没有，就需要开发者处理一下。通常也有两种方式
-	
-	引入第三方的声明文件```npm install @types/bar```
-	如果没有第三方声明文件，需要自己声明模块类型
-	
-	```
-	// /types/bar.d.ts
-	declare module 'bar' {
-	    export function foo(): string;
-	}
-	// index.ts
-	import bar from 'bar';
-	bar.foo();
-	```
-	npm 包的声明文件与全局变量的声明文件有很大区别。在 npm 包的声明文件中，使用 declare 不再会声明一个全局变量，而只会在当前文件中声明一个局部变量。只有在声明文件中使用 export 导出，然后在使用方 import 导入后，才会应用到这些类型声明。
-	（我们自己除了在声明文件中声明module模块，也可以在一个index.d.ts文件中导出模块相关的所有变量声明。然后放在/types下与模块同名的目录下，并且配置tsconfig.json
-	
-	```
-	{
-	    "compilerOptions": {
-	        "module": "commonjs",
-	        "baseUrl": "./",
-	        "paths": {
-	            "*": ["types/*"]
-	        }
-	    }
-	}
-	```
-	这样，通过 import 导入 bar 的时候，也会去 types 目录下寻找对应的模块的声明文件了。typescript检查第三方模块声明文件时候，应该是遵循node_modules模块根目录->@types目录->项目目录types的顺序（此顺序尚待验证）。
-	）
-	另一个场景是如果一个模块引入了插件，增强了其功能，需要我们自己编写声明文件
-	
-	```
-	// types/moment-plugin/index.d.ts
-	// 需要先引入原模块
-	import * as moment from 'moment';
-	
-	declare module 'moment' {
-	    export function foo(): moment.CalendarKey;
-	}
-	// src/index.ts
-	import * as moment from 'moment';
-	import 'moment-plugin';
-	
-	moment.foo();
-	```
+**全局变量的声明语法有**
 
-4. 全局类型，如果我们在多个模块中都需要使用某个类型，我们可以考虑把这个类型声明为一个全局类型
+- declare var 声明全局变量
+- declare function 声明全局方法
+- declare class 声明全局类
+- declare enum 声明全局枚举类型
+- declare namespace 声明（含有子属性的）全局对象
+- interface 和 type 声明全局类型
+
+**npm包的模块类型声明**文件可能存在于第三方包里，也可能存在于node_modules/@types/目录下，或者我们自己声明，自己声明的话，就存在于/types模块同名目录下。npm包的类型声明都用export关键字导出
+
+有以下几种语法
+
+- export 导出变量
+- export namespace 导出（含有子属性的）对象
+- export default ES6 默认导出
+- export = commonjs 导出模块
+
+**UMD库的类型声明语法为**
+
+export as namespace foo;
+
+**直接扩展全局变量的声明语法有两种方式**
+
+- 全局interface
+- declare namespace
+
+**在 npm 包或 UMD 库中扩展全局变量**
+
+```
+declare global {
+    interface String {
+        prependHello(): string;
+    }
+}
+
+export {};
+```
+
+注意即使此声明文件不需要导出任何东西，仍然需要导出一个空对象，用来告诉编译器这是一个模块的声明文件，而不是一个全局变量的声明文件
+
+**模块插件**
+
+如果是需要扩展原有模块的话，需要在类型声明文件中先引用原有模块，再使用 declare module 扩展原有模块
+
+```
+// types/moment-plugin/index.d.ts
+
+import * as moment from 'moment';
+
+declare module 'moment' {
+    export function foo(): moment.CalendarKey;
+}
+// src/index.ts
+
+import * as moment from 'moment';
+import 'moment-plugin';
+
+moment.foo();
+```
+
+3. 全局类型，如果我们在多个模块中都需要使用某个类型，我们可以考虑把这个类型声明为一个全局类型
 
 	```
 	// /types/User.d.ts
@@ -284,7 +297,7 @@ typescript要求每个变量都有类型。如果项目中都是我们自己实�
 - 声明文件以.d.ts结尾
 
 - 声明文件主要解决两个问题
-	- 非自定义模块的变量声明（包括宿主API、第三方模块）
+	- 非自定义模块的变量声明（包括宿主API、第三方库）
 	- 声明全局接口
 
 - 声明文件有4中形式
