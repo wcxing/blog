@@ -6,7 +6,15 @@
   "scripts": {
     "update": "node ./update.js"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "git add . && npm run update"
+   }
+  },
   "keywords": [],
   "author": "doomliu",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^3.0.9"
+  }
 }
