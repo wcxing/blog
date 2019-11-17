@@ -1,0 +1,1 @@
+- 执行setState之后，如果属性值未变，还会执行render和diff吗？会渲染依赖于state值的子组件吗？答案：会
