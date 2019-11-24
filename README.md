@@ -1,5 +1,5 @@
 ## 博客
-目录（99）
+目录（103）
 
 - [SSR](article/SSR)
 	- [next](article/SSR/next.md)
@@ -11,6 +11,7 @@
 	- [jenkins配置git](article/centos/jenkins配置git.md)
 - [css](article/css)
 	- [css三角形](article/css/css三角形.md)
+	- [css语义化](article/css/css语义化.md)
 	- [多余文本显示省略号](article/css/多余文本显示省略号.md)
 	- [多列等高布局](article/css/多列等高布局.md)
 	- [自适应方案](article/css/自适应方案.md)
@@ -61,6 +62,9 @@
 	- [Fragment](article/react/Fragment.md)
 	- [MVVM](article/react/MVVM.md)
 	- [Portals](article/react/Portals.md)
+	- [React diff算法和key的作用](article/react/React diff算法和key的作用.md)
+	- [React 批量更新](article/react/React 批量更新.md)
+	- [React工作原理](article/react/React工作原理.md)
 	- [React开发最佳实践](article/react/React开发最佳实践.md)
 	- [React渲染执行流程](article/react/React渲染执行流程.md)
 	- [context](article/react/context.md)
