@@ -61,7 +61,39 @@ React利用这种数据结构，遍历时候，就可以从头开始访问，然
 
 #### 5. 主要源码调用流程
 
-1. 调和阶段
+1. 初始化阶段
+
+	ReactDOM.render() // ReactDOM.js
+	
+	↓
+	
+	DOMRenderer.updateContainerAtExpirationTime() // ReactFiberReconciler.js
+	
+	↓
+	
+	scheduleRootUpdate()
+	
+	↓
+	
+	scheduleWork() // 开始调度 ReactFiberScheduler.js
+	
+	↓
+	
+	requestWork() // 具体的调度阶段
+	
+	↓
+	
+	performWorkOnRoot()
+	
+	↓
+	
+	renderRoot()
+	
+	↓
+	
+	workLoop() // 开始循环调和fiber树
+
+2. 调和阶段
 
 	beginWork() // ReactFiberBeginWork.js
 	
@@ -91,7 +123,7 @@ React利用这种数据结构，遍历时候，就可以从头开始访问，然
 	
 	说明：这个过程通过workLoop()循环，构建或更新整个fiber树。虚拟DOM和fiber树上的stateNode结构对应
 	
-2. commit阶段
+3. commit阶段
 
 	completeRoot() // ReactFiberScheduler.js
 	
