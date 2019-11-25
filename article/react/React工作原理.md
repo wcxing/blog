@@ -36,7 +36,7 @@ React的组件更新后并不会直接进行DOM的更新。是因为React组件�
 
 React的fiber架构其实就是将DOM挂载之前的任务划分时间片。若22ms没有完成，则挂起等待下次执行。而DOM挂载的任务都是连续的，不会挂起等待再执行。
 
-React中的fiber是一种数据结构，每个组件都对应有一个fiber对象，它保存了每个组件的详细信息，如，组件的引用，class component实例，state、props、更新状态及更新时间等等，用来给React调度判断执行优先级和具体更新操作。
+React中的fiber是一种数据结构，每个组件都对应有一个fiber对象，它保存了每个组件的详细信息，如，组件的引用（type），class component实例和DOM元素（stateNode），state、props、更新状态及更新时间等等，用来给React调度判断执行优先级和具体更新操作。可以这么理解，fiber树就是虚拟DOM。
 
 fiber树将组件组织成一棵树的结构。在触发更新后，就是遍历fiber树来实现组件树的更新的。
 
@@ -60,3 +60,53 @@ React利用这种数据结构，遍历时候，就可以从头开始访问，然
 3. commit：真正进行DOM的操作
 
 #### 5. 主要源码调用流程
+
+1. 调和阶段
+
+	beginWork() // ReactFiberBeginWork.js
+	
+	↓
+	
+	updateClassComponent() // （这里以class component为例） 这里会processUpdateQueue，处理update队列
+	
+	↓
+	
+	constructClassInstance() // 在这里实例化class component并赋值给fiber的stateNode属性
+	
+	mountClassInstance() // 这里会触发生命周期函数
+	
+	finishClassComponent() 
+	
+	↓
+	
+	reconcileChildren() // 调和子节点，这里做diff操作，挂载子fiber节点
+	
+	↓
+	
+	reconcileSinglElement()
+	
+	↓
+	
+	createFiberFromElement() 使用子组件示例创建fiber并挂载
+	
+	说明：这个过程通过workLoop()循环，构建或更新整个fiber树。虚拟DOM和fiber树上的stateNode结构对应
+	
+2. commit阶段
+
+	completeRoot() // ReactFiberScheduler.js
+	
+	↓
+	
+	commitRoot()
+	
+	↓
+	
+	commitAllHostEffects() // 在这里进行DOM更新
+	
+	↓
+	
+	根据reconcile阶段标记的effectTag决定如何更新DOM
+	
+		1. commitPlacement
+		2. commitWork
+		3. commitDeletion

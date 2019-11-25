@@ -1,5 +1,5 @@
 ## 博客
-目录（103）
+目录（102）
 
 - [SSR](article/SSR)
 	- [next](article/SSR/next.md)
@@ -66,7 +66,6 @@
 	- [React 批量更新](article/react/React 批量更新.md)
 	- [React工作原理](article/react/React工作原理.md)
 	- [React开发最佳实践](article/react/React开发最佳实践.md)
-	- [React渲染执行流程](article/react/React渲染执行流程.md)
 	- [context](article/react/context.md)
 	- [hook](article/react/hook.md)
 	- [ref转发](article/react/ref转发.md)
