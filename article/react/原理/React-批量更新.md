@@ -69,6 +69,8 @@ handleClick = () => {
 ```
 这是因为，定时器方法```setTimeout()```方法是在```batchedUpdates()```执行环境中执行的，但是```setTimeout()```中的回调则不是，因此回调执行时候，```isBatchingUpdates```是false，不会进行批量更新。
 
+在生命周期钩子周也是批量执行的，原理目前不太清楚（因为componentDidMount好像并未处于batchUpdates的执行环境中，isBatchingUPdates值不是true，不知道为啥也可以批量更新，需要详细看源码）
+
 #### 5. 批量更新的注意事项
 
 由于React中的setState可能进行批量更新。因此，setState的结果如果依赖于上一个state值的话，可能会计算错误。所以对于这种情况，setState应该传入一个方法。
