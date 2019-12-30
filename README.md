@@ -1,5 +1,5 @@
 ## 博客
-目录（125）
+目录（126）
 
 - [SSR](article/SSR)
 	- [next](article/SSR/next.md)
@@ -96,7 +96,8 @@
 		- [1.webpack与构建发展简史(9)](article/webpack/玩转webpack笔记/1.webpack与构建发展简史(9).md)
 		- [2.webpack基础用法(12)](article/webpack/玩转webpack笔记/2.webpack基础用法(12).md)
 		- [3.webpack进阶用法(16)](article/webpack/玩转webpack笔记/3.webpack进阶用法(16).md)
-		- [4.编写可维护的webpack构建配置(12)](article/webpack/玩转webpack笔记/4.编写可维护的webpack构建配置(12).md)
+		- [4.编写可维护的webpack构建配置(9)](article/webpack/玩转webpack笔记/4.编写可维护的webpack构建配置(9).md)
+		- [5.webpack构建速度和体积优化策略(12)](article/webpack/玩转webpack笔记/5.webpack构建速度和体积优化策略(12).md)
 		- [6.通过源码掌握webpack原理(9)](article/webpack/玩转webpack笔记/6.通过源码掌握webpack原理(9).md)
 		- [7.编写loader和插件(7)](article/webpack/玩转webpack笔记/7.编写loader和插件(7).md)
 		- [8.React全家桶和webpack开发商城项目(10)](article/webpack/玩转webpack笔记/8.React全家桶和webpack开发商城项目(10).md)
