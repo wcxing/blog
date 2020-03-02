@@ -106,7 +106,7 @@ create-react-app的执行过程可以描述如下
 
 	react-scripts支持我们配置一些环境变量来控制构建和本地调试过程。我们可以在项目根目录创建`.env`和`.env.development`文件，在其中加入一些环境变量配置，比如`PUBLIC_URL`用来控制webpack的发布地址、`SKIP_PREFLIGHT_CHECK`用来控制build之前是否需要进行依赖检查。
 	
-	实现的原理是，react-scripts使用`dotenv`这个库解析了根目录下的`.env`和`.env.development`文件（如果存在），解析成key-value形式，然后根据这些变量进行构建过程的处理（比如根据`PUBLIC_URL`设置webpack的output.publicPath值）。
+	实现的原理是，react-scripts使用`dotenv`这个库解析了根目录下的`.env`和`.env.development`文件（如果存在），解析成key-value形式挂载到process.env上面，然后根据这些变量进行构建过程的处理（比如根据`PUBLIC_URL`设置webpack的output.publicPath值）。
 	
 	react-scripts解析环境变量后，不仅用于构建过程处理，还会将所有的env变量用`webpack.DefinePlugin`插件导入到项目运行时代码中，js通过`process.env.PUBLIC_URL`来访问，html中通过`%PUBLIC_URL%`来访问。所以我们可以自定义一些环境变量，用于实现某些业务逻辑。
 	
