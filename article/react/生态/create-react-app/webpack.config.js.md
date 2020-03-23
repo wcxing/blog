@@ -31,7 +31,7 @@ mode是根据传入的环境参数判断是生产环境还是开发环境。
 
 #### 4. entry
 
-entry中引入了`react-dev-utils/webpackHotDevClient`这个模块，这个文件是用来展示错误信息的。它连接了WDS的websocket，并且在重编译时候的信息，包括报错等事件触发时候，做出展示相关错误的操作。错误提示是引入了`react-error-overlay`模块，这个模块创建了一个无src的iframe，并操作其中的元素来渲染错误信息。
+entry中引入了`react-dev-utils/webpackHotDevClient`这个模块，这个文件是wds的客户端代码，主要有几个作用，一个是处理wds文件变化，进行reload、热重载等操作，它代替了wds默认的客户端代码。还有一个作用是用来展示错误信息的。它连接了WDS的websocket，并且在重编译时候的信息，包括报错等事件触发时候，做出展示相关错误的操作。错误提示是引入了`react-error-overlay`模块，这个模块创建了一个无src的iframe，并操作其中的元素来渲染错误信息。
 
 `path.appIndexJs`是项目目录里面的index.js文件。
 
@@ -85,7 +85,11 @@ paths.js文件提供了几个必要的文件的绝对路径。路径的计算的
 	
 	cra的react-scripts中的webpack.config.js中的这个选项是在paths文件中，通过`getPublicUrlOrPath`方法计算得到的
 	
-	这个参数可以在.env文件中配置，也可以在项目模板中的package.json中配置，但是development环境中只使用pathname配置publicPath
+	这个参数可以在.env文件中配置，也可以在项目模板中的`package.json`的`homepage`字段中配置，但是development环境中只使用pathname配置publicPath
+	
+	配置会移除末尾的`"/"`，这样访问静态资源时候不需要在末尾加`"/"`。
+	
+	生产环境的`publicPath`就根据开发者指定的路径配置就行，可以是完整的url，也可以是相对路径或者绝对路径。而开发环境，cra认为最好是绝对路径，因为开发环境和生产环境不同的是，本地server serve的是打包后放在内存中的内容和contentBase指定的目录，和url中的path无关。所以开发环境的`publicPath`最佳实践就是使用默认值`"/"`。
 	
 7. devtoolModuleFilenameTemplate
 
